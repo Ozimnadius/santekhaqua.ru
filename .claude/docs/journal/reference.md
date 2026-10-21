@@ -8,6 +8,7 @@
   - новый адрес в контактах и в шапке: ряд В, 22/3, ТОГК Славянский Мир, район Коммунарка, Новомосковский административный округ, Москва; координаты 55.611880, 37.487991;
   - почта info@santekhaqua.ru с переадресацией на mr.bilyan@inbox.ru;
   - info@santekhaqua.ru — в шапке, подвале и контактах.
+- ссылка на Max — https://max.ru/u/f9LHodD0cOKBifIRgVlztpbKgwMc9yD6vjjbbj3XIoQDrxrBGc79FmU-7yc (Михаил Шахов, чат задачи, 21.10.2026 12:21); там же — старый телефон убрать: «Да»
 
 ## Справочник
 
@@ -24,3 +25,6 @@
 - Страница контактов (PAGE_CONTACTS=1, contacts/page_contacts_1.php): телефоны — include/contacts-site-phone-one.php (без регионов), адрес — contacts-site-address.php, почта — contacts-site-email.php
 - 2026-10-21: кеш компонента bitrix:news.list на проде сброшен (clearComponentCache); пользователь сбросил весь кеш Битрикса
 - Сайт работает через php-cgi (ISPmanager, ~/php-bin-isp-php82/santekhaqua.ru/php), opcache.revalidate_freq = 0
+- Соцсети Аспро: настройки сайта s1 в b_option_site (aspro.max, SOCIAL_*); WhatsApp — номер без «+», ссылку https://wa.me/… строит шаблон; Telegram — полная ссылка
+- Компонент aspro:social.info.max (шаблон .default) выводится в подвале (include/footer/social.info.php), на странице контактов, в мобильном меню (header_mobile_menu_1) и мега-меню; своя копия шаблона — bitrix/templates/aspro_max/components/aspro/social.info.max/.default
+- local/php_interface/init.php — первый свой init.php на сайте (до этого init.php не было ни в local, ни в bitrix/php_interface)

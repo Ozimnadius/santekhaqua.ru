@@ -1,0 +1,19 @@
+/* Max: значка нет в спрайте Аспро (images/svg/social.svg) — свои SVG 43x43 в images/ */
+/* Цветная плитка: страница контактов, мобильное меню, мега-меню */
+.social-icons li.max a {
+  background-image: url(images/max-color.svg);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+/* Подвал: белый значок, при наведении — цветная плитка */
+footer .social-icons ul li.max a {
+  background-image: url(images/max-white.svg);
+  background-position: 50% 50%;
+}
+footer .social-icons ul li.max a:hover {
+  background-image: url(images/max-color.svg);
+}
+/* Светлый подвал: серый значок */
+footer .light .social-icons ul li.max a:not(:hover) {
+  background-image: url(images/max-gray.svg);
+}
