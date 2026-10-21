@@ -14,6 +14,7 @@
 |---|---|---|---|---|
 | 1.2 | 2026-10-21 | залито 8: bitrix/templates/aspro_max/components/bitrix/news.list/front_review/template.php (откат к исходному), include/contacts-site-address.php, include/contacts-site-email.php, include/contacts-site-map.php, include/contacts-site-phone-one.php, include/contacts-site-phone.php, include/footer/site-email.php, include/top_page/site-address.php (ssh-deploy.js, md5 сверен) | | curl главной и /contacts/, микроразметка Organization, браузер 1366/800/375 px |
 | 1.3 | 2026-10-21 | залито 9: bitrix/templates/aspro_max/components/aspro/social.info.max/.default/images/max-color.svg, …/images/max-gray.svg, …/images/max-white.svg, …/lang/en/template.php, …/lang/ru/template.php, …/result_modifier.php, …/style.css, …/template.php, local/php_interface/init.php (ssh-deploy.js, md5 сверен) | | curl главной и /contacts/ (ссылки t.me, wa.me, max.ru), браузер /contacts/, поле SOCIAL_MAX в \CMax::$arParametrsList на сервере |
+| 1.4 | 2026-10-21 | залито 1: local/php_interface/init.php (ssh-deploy.js, md5 сверен) | | стиль SOCIAL_MAX в head страницы /bitrix/admin/aspro.max_options.php, на /bitrix/admin/index.php его нет; сайт 200 |
 
 ## Удалить с сервера
 

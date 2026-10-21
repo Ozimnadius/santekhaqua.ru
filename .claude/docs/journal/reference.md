@@ -28,3 +28,4 @@
 - Соцсети Аспро: настройки сайта s1 в b_option_site (aspro.max, SOCIAL_*); WhatsApp — номер без «+», ссылку https://wa.me/… строит шаблон; Telegram — полная ссылка
 - Компонент aspro:social.info.max (шаблон .default) выводится в подвале (include/footer/social.info.php), на странице контактов, в мобильном меню (header_mobile_menu_1) и мега-меню; своя копия шаблона — bitrix/templates/aspro_max/components/aspro/social.info.max/.default
 - local/php_interface/init.php — первый свой init.php на сайте (до этого init.php не было ни в local, ни в bitrix/php_interface)
+- Значки полей «Социальных сетей» в админке Аспро — bitrix/css/aspro.max/style.css: всем полям по умолчанию значок VK (social.svg 0 0), свой — по div[data-optioncode="…"]; для своих полей стиль добавляет local/php_interface/init.php
