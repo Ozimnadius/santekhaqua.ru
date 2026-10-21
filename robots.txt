@@ -33,4 +33,4 @@ Disallow: /*back_url_admin=
 Disallow: /*?utm_source=
 Disallow: *?arrFilter*
 Crawl-delay: 20
-Host: https://santehaqua.ru
+Host: https://santekhaqua.ru

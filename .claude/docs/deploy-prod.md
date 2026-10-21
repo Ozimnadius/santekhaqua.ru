@@ -16,6 +16,7 @@
 | 1.3 | 2026-10-21 | залито 9: bitrix/templates/aspro_max/components/aspro/social.info.max/.default/images/max-color.svg, …/images/max-gray.svg, …/images/max-white.svg, …/lang/en/template.php, …/lang/ru/template.php, …/result_modifier.php, …/style.css, …/template.php, local/php_interface/init.php (ssh-deploy.js, md5 сверен) | | curl главной и /contacts/ (ссылки t.me, wa.me, max.ru), браузер /contacts/, поле SOCIAL_MAX в \CMax::$arParametrsList на сервере |
 | 1.4 | 2026-10-21 | залито 1: local/php_interface/init.php (ssh-deploy.js, md5 сверен) | | стиль SOCIAL_MAX в head страницы /bitrix/admin/aspro.max_options.php, на /bitrix/admin/index.php его нет; сайт 200 |
 | 1.5 | 2026-10-21 | залито 2: bitrix/templates/aspro_max/css/custom.css, bitrix/templates/aspro_max/page_blocks/header/header_1.php (ssh-deploy.js, md5 сверен; заменили прошлую заливку того же шага) | | curl главной и /contacts/, собранный CSS шаблона, браузер /contacts/ на 1440 |
+| 1.9 | 2026-10-21 | залито 3: include/licenses_detail.php, include/offer_detail.php, robots.txt (ssh-deploy.js, md5 сверен) | | curl оферты, политики и robots.txt — старых домена и адреса нет, Host новый |
 
 ## Удалить с сервера
 
