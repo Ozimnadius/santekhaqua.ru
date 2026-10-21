@@ -32,3 +32,6 @@
 - Шапка header_1: строка .header-topbar — первый блок .header-wrapper (до .logo_and_menu-row, который display:flex); стили — bitrix/templates/aspro_max/css/custom.css (Аспро собирает его в /bitrix/cache/css/s1/aspro_max/template_*.css)
 - Главная с большим баннером (body BIG_BANNER_INDEX, .long_banner .header_wrap:not(.light-menu-color)) — шапка поверх светлого баннера, Аспро красит тексты в #333; для своих блоков нужен тот же селектор
 - Референс шапки от пользователя (santeh-kd2.ru): телефоны строкой сверху, логотип, слоган, график работы, почта и адрес столбиком, значки мессенджеров, «Заказать звонок» — на потом, после оплаты клиентом
+- Панель ISPmanager сервера — https://hosting.web-komp.ru:1500/ispmgr (сертификат *.web-komp.ru; через 4.web-comp.ru:1500 браузер не пускает — имя не совпадает); сервер один: IP 217.174.105.80, 217.174.108.22 (сайт), 217.174.108.23
+- Почта info@santekhaqua.ru: maildir ~/email/santekhaqua.ru/info/.maildir, Exim 4.97 + Dovecot; пересылку копий делает Exim по настройке панели (в .dovecot.sieve правил нет)
+- В поле «Примечание» ящика info@ в ISPmanager открытым текстом записана строка, похожая на пароль — лучше убрать (решает пользователь)
