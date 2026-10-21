@@ -21,6 +21,7 @@
 | 1.12 | 2026-10-21 | залито 4: bitrix/templates/aspro_max/css/custom.css, bitrix/templates/aspro_max/page_blocks/header/header_1.php, local/php_interface/init.php, include/top_page/header-address.php (ssh-deploy.js, md5 сверен) | | curl главной, /contacts/, карточки; браузер главная 1440/1280/1024, /contacts/ тёмная 1440, форма «Заказать звонок» |
 | 1.13 | 2026-10-21 | залито 2: bitrix/templates/aspro_max/css/custom.css, bitrix/templates/aspro_max/page_blocks/header/header_1.php (ssh-deploy.js, md5 сверен; повторная заливка custom.css после проверки) | | главная 1440/1024 (значки, кнопка, наведение), /contacts/ тёмная тема |
 | 1.14 | 2026-10-21 | залито 2: bitrix/templates/aspro_max/css/custom.css, bitrix/templates/aspro_max/page_blocks/header_mobile_1.php (ssh-deploy.js, md5 сверен; повторная заливка custom.css после проверки) | | главная и /contacts/ 375 светлая и тёмная, 768; бургер-меню (избранное, сравнение) |
+| 1.15 | 2026-10-21 | залито 1: bitrix/templates/aspro_max/css/custom.css (ssh-deploy.js, md5 сверен) | | главная 1160/992/1440 — края строки шапки совпадают с полосой меню |
 
 ## Удалить с сервера
 

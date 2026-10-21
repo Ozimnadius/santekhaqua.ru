@@ -214,6 +214,13 @@
         margin-left: 10px;
         margin-right: 10px;
     }
+    /* крайние отступы — как у Аспро (16 px), иначе строка шире полосы меню */
+    .hdr > .header__top-item:first-child {
+        margin-left: 16px;
+    }
+    .hdr > .header__top-item:last-child {
+        margin-right: 16px;
+    }
     .hdr-phones {
         gap: 12px;
     }
