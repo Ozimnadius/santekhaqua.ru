@@ -13,8 +13,36 @@ else
 $logoClass = ($arTheme['COLORED_LOGO']['VALUE'] !== 'Y' ? '' : ' colored');
 $bLongHeader = true;
 $bColoredHeader = true;
+
+// Б24 79227: строка над шапкой — адрес, почта и мессенджеры. Адрес и почта — те же включаемые области, что в подвале;
+// мессенджеры — настройки Аспро SOCIAL_TELEGRAM, SOCIAL_MAX, SOCIAL_WHATS. Стили — css/custom.css (.header-topbar)
+$arHeaderMessengers = [];
+if($telegram = trim((string)CMax::GetFrontParametrValue('SOCIAL_TELEGRAM'))){
+	$arHeaderMessengers['telegram'] = ['HREF' => $telegram, 'TITLE' => 'Telegram'];
+}
+if($max = trim((string)CMax::GetFrontParametrValue('SOCIAL_MAX'))){
+	$arHeaderMessengers['max'] = ['HREF' => $max, 'TITLE' => 'Max'];
+}
+$whatsCustom = trim((string)CMax::GetFrontParametrValue('SOCIAL_WHATS_CUSTOM'));
+$whats = trim((string)CMax::GetFrontParametrValue('SOCIAL_WHATS'));
+if($whatsCustom || $whats){
+	$arHeaderMessengers['whats'] = ['HREF' => ($whatsCustom ?: 'https://wa.me/'.$whats), 'TITLE' => 'WhatsApp'];
+}
 ?>
 <div class="header-wrapper">
+	<div class="maxwidth-theme header-topbar hidden-sm hidden-xs">
+		<div class="header-topbar__inner">
+			<?CMax::showAddress('header-topbar__item header-topbar__addr');?>
+			<?CMax::showEmail('header-topbar__item header-topbar__email');?>
+			<?if($arHeaderMessengers):?>
+				<div class="header-messengers">
+					<?foreach($arHeaderMessengers as $code => $arMessenger):?>
+						<a class="header-messengers__item header-messengers__item--<?=$code?>" href="<?=htmlspecialcharsbx($arMessenger['HREF'])?>" target="_blank" rel="nofollow" title="<?=$arMessenger['TITLE']?>"><?=$arMessenger['TITLE']?></a>
+					<?endforeach;?>
+				</div>
+			<?endif;?>
+		</div>
+	</div>
 	<div class="logo_and_menu-row header__top-part">
 		<div class="maxwidth-theme logo-row">
 			<div class="header__top-inner">

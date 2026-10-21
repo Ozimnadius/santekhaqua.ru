@@ -26,3 +26,71 @@
 .set-position.center {
     background-size: cover;
 }
+/* Строка над шапкой header_1 (Б24 79227): адрес, почта и мессенджеры */
+.header-topbar__inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    min-height: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    line-height: 16px;
+}
+.header-topbar__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+.header-topbar__item .svg {
+    flex: none;
+}
+.header-topbar__addr {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.header-topbar__email {
+    flex: none;
+}
+.header-topbar__email a {
+    color: inherit;
+    text-decoration: none;
+}
+.header-topbar__email a:hover {
+    text-decoration: underline;
+}
+/* главная с большим баннером: шапка поверх светлого фона — тёмный текст, как у телефона Аспро */
+.long_banner .header_wrap:not(.light-menu-color) .header-topbar__inner {
+    color: #333;
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+.header-messengers {
+    display: flex;
+    flex: none;
+    gap: 8px;
+    margin-left: auto;
+}
+.header-messengers__item {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    font-size: 0;
+    background: url(../images/svg/social.svg) no-repeat;
+    background-size: 365.02px 435.35px; /* спрайт 654x780 в масштабе 24/43 */
+    transition: opacity 0.3s ease;
+}
+.header-messengers__item:hover {
+    opacity: 0.8;
+}
+.header-messengers__item--telegram {
+    background-position: -183.63px -183.63px;
+}
+.header-messengers__item--whats {
+    background-position: -183.63px -131.16px;
+}
+.header-messengers__item--max {
+    background: url(../components/aspro/social.info.max/.default/images/max-color.svg) 50% 50% / 24px 24px no-repeat;
+}

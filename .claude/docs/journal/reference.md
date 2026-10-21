@@ -29,3 +29,6 @@
 - Компонент aspro:social.info.max (шаблон .default) выводится в подвале (include/footer/social.info.php), на странице контактов, в мобильном меню (header_mobile_menu_1) и мега-меню; своя копия шаблона — bitrix/templates/aspro_max/components/aspro/social.info.max/.default
 - local/php_interface/init.php — первый свой init.php на сайте (до этого init.php не было ни в local, ни в bitrix/php_interface)
 - Значки полей «Социальных сетей» в админке Аспро — bitrix/css/aspro.max/style.css: всем полям по умолчанию значок VK (social.svg 0 0), свой — по div[data-optioncode="…"]; для своих полей стиль добавляет local/php_interface/init.php
+- Шапка header_1: строка .header-topbar — первый блок .header-wrapper (до .logo_and_menu-row, который display:flex); стили — bitrix/templates/aspro_max/css/custom.css (Аспро собирает его в /bitrix/cache/css/s1/aspro_max/template_*.css)
+- Главная с большим баннером (body BIG_BANNER_INDEX, .long_banner .header_wrap:not(.light-menu-color)) — шапка поверх светлого баннера, Аспро красит тексты в #333; для своих блоков нужен тот же селектор
+- Референс шапки от пользователя (santeh-kd2.ru): телефоны строкой сверху, логотип, слоган, график работы, почта и адрес столбиком, значки мессенджеров, «Заказать звонок» — на потом, после оплаты клиентом
