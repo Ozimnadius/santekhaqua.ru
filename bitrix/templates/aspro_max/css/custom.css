@@ -267,3 +267,55 @@
         color: var(--theme-base-color) !important;
     }
 }
+/* Мобильная шапка header_mobile_1 (Б24 79227, вариант 3): первый номер и мессенджеры левее значков Аспро;
+   сравнение и избранное — только в бургер-меню */
+#mobileheader .hdr-m {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 63px;
+    margin-right: 6px;
+}
+#mobileheader .hdr-m__phone {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 20px;
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--white_text_black);
+}
+/* только значки шапки: мобильное меню тоже внутри #mobileheader, там сравнение и избранное остаются */
+#mobileheader .right-icons .basket-link.compare,
+#mobileheader .right-icons .basket-link.delay {
+    display: none !important;
+}
+@media (max-width: 767px) {
+    /* на телефоне места мало: без номера текстом и без кабинета (есть в бургер-меню), значки чуть плотнее */
+    #mobileheader .hdr-m__phone,
+    #mobileheader .right-icons .wrap_cabinet {
+        display: none;
+    }
+    #mobileheader .right-icons .wrap_icon {
+        padding-right: 6px;
+    }
+    #mobileheader .hdr-m {
+        margin-right: 2px;
+    }
+    #mobileheader .hdr-m__messengers {
+        gap: 4px;
+    }
+    #mobileheader .hdr-m__messengers .header-messengers__item {
+        width: 24px;
+        height: 24px;
+        background-size: 365.02px 435.35px; /* спрайт в масштабе 24/43 */
+    }
+    #mobileheader .hdr-m__messengers .header-messengers__item--telegram {
+        background-position: -183.63px -183.63px;
+    }
+    #mobileheader .hdr-m__messengers .header-messengers__item--whats {
+        background-position: -183.63px -131.16px;
+    }
+    #mobileheader .hdr-m__messengers .header-messengers__item--max {
+        background-size: 24px 24px;
+    }
+}
