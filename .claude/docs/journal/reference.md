@@ -46,3 +46,6 @@
 - Тексты о доставке: /help/delivery/ (help/delivery/index.php), подсказка в карточке — catalog/index_help_text.php (включаемая область раздела с суффиксом help_text, кешируется вместе с catalog.element); калькулятор в карточке — aspro:catalog.delivery.max (include/comp_catalog_delivery.php)
 - Переменные темы Аспро (светлая / тёмная): --white_text_black #333 / white, --basic_text_black #555 / #ccc, --stroke_black #ececec / #3a3a3a, --black_bg_black #fff / #1b1b1b, --theme-base-color #365edc; тёмная включается по prefers-color-scheme
 - Мобильная шапка Аспро (header_mobile_1.php): бургер, логотип, значки телефона (ShowHeaderMobilePhones), поиска, кабинета, корзины с сравнением/избранным (ShowBasketWithCompareLink)
+- Шапка header_1 (вариант 3): .hdr-brand (логотип + слоган), .hdr-contacts (.hdr-phones, .hdr-sub), .hdr-actions (.header-messengers, .hdr-callback), затем .right-icons Аспро; стили — css/custom.css, точки 1299 и 1199
+- Короткий адрес шапки — include/top_page/header-address.php (правится в админке); полный — include/top_page/site-address.php (подвал) и include/contacts-site-address.php (контакты)
+- В Figma вариант 3 на 1024 (узел 6:755) — телефоны в ряд, как на сайте

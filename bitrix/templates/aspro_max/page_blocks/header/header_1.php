@@ -5,56 +5,27 @@ global $arTheme, $arRegion, $bLongHeader, $bColoredHeader;
 $arRegions = CMaxRegionality::getRegions();
 $bIncludeRegionsList = $arRegions || ($arTheme['USE_REGIONALITY']['VALUE'] !== 'Y' && $arTheme['USE_REGIONALITY']['DEPENDENT_PARAMS']['REGIONALITY_IPCITY_IN_HEADER']['VALUE'] !== 'N');
 
-if($arRegion)
-	$bPhone = ($arRegion['PHONES'] ? true : false);
-else
-	$bPhone = ((int)$arTheme['HEADER_PHONES'] ? true : false);
-
 $logoClass = ($arTheme['COLORED_LOGO']['VALUE'] !== 'Y' ? '' : ' colored');
 $bLongHeader = true;
 $bColoredHeader = true;
 
-// Б24 79227: строка над шапкой — адрес, почта и мессенджеры. Адрес и почта — те же включаемые области, что в подвале;
-// мессенджеры — настройки Аспро SOCIAL_TELEGRAM, SOCIAL_MAX, SOCIAL_WHATS. Стили — css/custom.css (.header-topbar)
-$arHeaderMessengers = [];
-if($telegram = trim((string)CMax::GetFrontParametrValue('SOCIAL_TELEGRAM'))){
-	$arHeaderMessengers['telegram'] = ['HREF' => $telegram, 'TITLE' => 'Telegram'];
-}
-if($max = trim((string)CMax::GetFrontParametrValue('SOCIAL_MAX'))){
-	$arHeaderMessengers['max'] = ['HREF' => $max, 'TITLE' => 'Max'];
-}
-$whatsCustom = trim((string)CMax::GetFrontParametrValue('SOCIAL_WHATS_CUSTOM'));
-$whats = trim((string)CMax::GetFrontParametrValue('SOCIAL_WHATS'));
-if($whatsCustom || $whats){
-	$arHeaderMessengers['whats'] = ['HREF' => ($whatsCustom ?: 'https://wa.me/'.$whats), 'TITLE' => 'WhatsApp'];
-}
+// Б24 79227, шапка по варианту 3 «компактная» (.claude/docs/work/spec-header.md): логотип со слоганом, три телефона в ряд,
+// под ними короткий адрес и почта, справа мессенджеры и «Заказать звонок». Данные — local/php_interface/init.php,
+// стили — css/custom.css (.hdr-*)
+$arHeaderPhones = santekhaquaHeaderPhones();
+$arHeaderMessengers = santekhaquaHeaderMessengers();
+$callbackExploded = explode(',', $arTheme['SHOW_CALLBACK']['VALUE']);
+$bHeaderCallback = in_array('HEADER', $callbackExploded);
 ?>
 <div class="header-wrapper">
-	<div class="maxwidth-theme header-topbar hidden-sm hidden-xs">
-		<div class="header-topbar__inner">
-			<?CMax::showAddress('header-topbar__item header-topbar__addr');?>
-			<?CMax::showEmail('header-topbar__item header-topbar__email');?>
-			<?if($arHeaderMessengers):?>
-				<div class="header-messengers">
-					<?foreach($arHeaderMessengers as $code => $arMessenger):?>
-						<a class="header-messengers__item header-messengers__item--<?=$code?>" href="<?=htmlspecialcharsbx($arMessenger['HREF'])?>" target="_blank" rel="nofollow" title="<?=$arMessenger['TITLE']?>"><?=$arMessenger['TITLE']?></a>
-					<?endforeach;?>
-				</div>
-			<?endif;?>
-		</div>
-	</div>
 	<div class="logo_and_menu-row header__top-part">
 		<div class="maxwidth-theme logo-row">
-			<div class="header__top-inner">
-				<div class="logo-block floated header__top-item no-shrinked">
+			<div class="header__top-inner hdr">
+				<div class="logo-block floated header__top-item no-shrinked hdr-brand">
 						<div class="logo<?=$logoClass?>">
 							<?=CMax::ShowBufferedLogo();?>
 						</div>
-				</div>
-
-				<div class="float_wrapper header__top-item ">
-					<div class="hidden-sm hidden-xs">
-						<div class="top-description addr">
+						<div class="hdr-brand__slogan">
 							<?$APPLICATION->IncludeFile(SITE_DIR."include/top_page/slogan.php", array(), array(
 									"MODE" => "html",
 									"NAME" => "Text in title",
@@ -62,10 +33,10 @@ if($whatsCustom || $whats){
 								)
 							);?>
 						</div>
-					</div>
 				</div>
 
-				<?if($bIncludeRegionsList):?>
+				<?// Б24 79227: без заведённых регионов Аспро выводит пустой блок с отступами — показываем только при регионах?>
+				<?if($bIncludeRegionsList && $arRegions):?>
 					<div class="header__top-item">
 						<div class="line-block line-block--8">
 							<div class="line-block__item">
@@ -77,20 +48,39 @@ if($whatsCustom || $whats){
 					</div>
 				<?endif;?>
 
-				<div class="header__top-item flex1">
-					<div class="wrap_icon inner-table-block">
-						<div class="phone-block flexbox flexbox--row fontUp">
-							<?if($bPhone):?>
-								<?CMax::ShowHeaderPhones('no-icons');?>
-							<?endif?>
-							<?$callbackExploded = explode(',', $arTheme['SHOW_CALLBACK']['VALUE']);
-							if( in_array('HEADER', $callbackExploded) ):?>
-								<div class="inline-block">
-									<span class="callback-block animate-load colored" data-event="jqm" data-param-form_id="CALLBACK" data-name="callback"><?=GetMessage("CALLBACK")?></span>
-								</div>
-							<?endif;?>
+				<div class="header__top-item flex1 hdr-contacts">
+					<?if($arHeaderPhones):?>
+						<div class="hdr-phones">
+							<?=CMax::showSpriteIconSvg(SITE_TEMPLATE_PATH."/images/svg/header_icons_srite.svg#phone_black", "svg-inline-phone hdr-phones__icon", ['WIDTH' => 5,'HEIGHT' => 13]);?>
+							<?foreach($arHeaderPhones as $arPhone):?>
+								<a class="hdr-phones__item" rel="nofollow" href="<?=htmlspecialcharsbx($arPhone['HREF'])?>"><?=$arPhone['PHONE']?></a>
+							<?endforeach;?>
 						</div>
+					<?endif;?>
+					<div class="hdr-sub">
+						<div class="hdr-sub__addr">
+							<?=CMax::showIconSvg("addr", SITE_TEMPLATE_PATH."/images/svg/address.svg");?>
+							<?$APPLICATION->IncludeFile(SITE_DIR."include/top_page/header-address.php", array(), array(
+									"MODE" => "html",
+									"NAME" => "Адрес в шапке",
+									"TEMPLATE" => "include_area.php",
+								)
+							);?>
+						</div>
+						<?CMax::showEmail('hdr-sub__email');?>
 					</div>
+				</div>
+				<div class="header__top-item hdr-actions">
+					<?if($arHeaderMessengers):?>
+						<div class="header-messengers">
+							<?foreach($arHeaderMessengers as $code => $arMessenger):?>
+								<a class="header-messengers__item header-messengers__item--<?=$code?>" href="<?=htmlspecialcharsbx($arMessenger['HREF'])?>" target="_blank" rel="nofollow" title="<?=$arMessenger['TITLE']?>"><?=$arMessenger['TITLE']?></a>
+							<?endforeach;?>
+						</div>
+					<?endif;?>
+					<?if($bHeaderCallback):?>
+						<span class="callback-block animate-load hdr-callback" data-event="jqm" data-param-form_id="CALLBACK" data-name="callback"><?=GetMessage("CALLBACK")?></span>
+					<?endif;?>
 				</div>
 				<div class="right-icons wb header__top-item">
 					<div class="line-block line-block--40 line-block--40-1200">
@@ -125,7 +115,7 @@ if($whatsCustom || $whats){
 						</div>
 						<div class="line-block__item no-shrinked">
 							<div class="wrap_icon inner-table-block person">
-								<?=CMax::showCabinetLink(true, true, 'big');?>
+								<?=CMax::showCabinetLink(true, false, 'big');?>
 							</div>
 						</div>
 						<?if (CMax::GetFrontParametrValue("ORDER_BASKET_VIEW") === "NORMAL"):?>

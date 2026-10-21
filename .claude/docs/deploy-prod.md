@@ -18,6 +18,7 @@
 | 1.5 | 2026-10-21 | залито 2: bitrix/templates/aspro_max/css/custom.css, bitrix/templates/aspro_max/page_blocks/header/header_1.php (ssh-deploy.js, md5 сверен; заменили прошлую заливку того же шага) | | curl главной и /contacts/, собранный CSS шаблона, браузер /contacts/ на 1440 |
 | 1.9 | 2026-10-21 | залито 3: include/licenses_detail.php, include/offer_detail.php, robots.txt (ssh-deploy.js, md5 сверен) | | curl оферты, политики и robots.txt — старых домена и адреса нет, Host новый |
 | 1.10 | 2026-10-21 | залито 2: catalog/index_help_text.php, help/delivery/index.php (ssh-deploy.js, md5 сверен); службы доставки — скриптом remote-php.js | | /help/delivery/, подсказка в карточке, калькулятор доставки в карточке (Москва) |
+| 1.12 | 2026-10-21 | залито 4: bitrix/templates/aspro_max/css/custom.css, bitrix/templates/aspro_max/page_blocks/header/header_1.php, local/php_interface/init.php, include/top_page/header-address.php (ssh-deploy.js, md5 сверен) | | curl главной, /contacts/, карточки; браузер главная 1440/1280/1024, /contacts/ тёмная 1440, форма «Заказать звонок» |
 
 ## Удалить с сервера
 
