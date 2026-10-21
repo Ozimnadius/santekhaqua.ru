@@ -16,3 +16,7 @@
 - Корень сайта на сервере — `/var/www/user1867/data/www/santekhaqua.ru` (ISPmanager, хост 4.web-comp.ru, IP 217.174.108.22), PHP CLI — `/opt/php82/bin/php`. Ядро 25.100.500, Аспро «Максимум» 2.7.1, шаблон `aspro_max`; `local/` и `bitrix/php_interface/init.php` нет.
 - Почта: MX — `mail.santekhaqua.ru`; ящик `info` уже создан на хостинге (`~/email/santekhaqua.ru/info`, 19.10.2026).
 - Включаемые области контактов: `include/contacts-site-phone.php`, `contacts-site-address.php`, `contacts-site-email.php`, `contacts-site-map.php`; шапка и подвал — `include/header_include`, `include/footer`.
+- Настройки Аспро s1 (на 2026-10-21): HEADER_TYPE=1, FOOTER_TYPE=1, HEADER_MOBILE=1, PAGE_CONTACTS=1, USE_REGIONALITY=N; телефоны шапки и подвала — HEADER_PHONES (CMax::ShowHeaderPhones; в шапке 1 видим первый, остальные — по наведению)
+- Почта и адрес в подвале: CMax::showEmail → include/footer/site-email.php, CMax::showAddress → include/top_page/site-address.php; страница контактов — include/contacts-site-*.php (там ещё +7 919 775-88-52 и info@santehaqua.ru), карта — include/contacts-site-map.php (метка 55.744, 37.603)
+- Соцсети подвала: include/footer/social.info.php → компонент aspro:social.info.max (поля SOCIAL_* настроек Аспро)
+- Настройки Аспро в БД — не в b_option по имени (там только служебные строки модуля); читать через \CMax::GetFrontParametrsValues('s1')
