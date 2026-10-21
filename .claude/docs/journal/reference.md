@@ -20,3 +20,7 @@
 - Почта и адрес в подвале: CMax::showEmail → include/footer/site-email.php, CMax::showAddress → include/top_page/site-address.php; страница контактов — include/contacts-site-*.php (там ещё +7 919 775-88-52 и info@santehaqua.ru), карта — include/contacts-site-map.php (метка 55.744, 37.603)
 - Соцсети подвала: include/footer/social.info.php → компонент aspro:social.info.max (поля SOCIAL_* настроек Аспро)
 - Настройки Аспро в БД — не в b_option по имени (там только служебные строки модуля); читать через \CMax::GetFrontParametrsValues('s1')
+- Микроразметку Organization в подвале выводит модуль: CAsproMax::shemaOrganization (bitrix/modules/aspro.max/lib/functions/CAsproMax.php) — strip_tags из include/contacts-site-phone-one.php, contacts-site-address.php, contacts-site-email.php
+- Страница контактов (PAGE_CONTACTS=1, contacts/page_contacts_1.php): телефоны — include/contacts-site-phone-one.php (без регионов), адрес — contacts-site-address.php, почта — contacts-site-email.php
+- 2026-10-21: кеш компонента bitrix:news.list на проде сброшен (clearComponentCache); пользователь сбросил весь кеш Битрикса
+- Сайт работает через php-cgi (ISPmanager, ~/php-bin-isp-php82/santekhaqua.ru/php), opcache.revalidate_freq = 0

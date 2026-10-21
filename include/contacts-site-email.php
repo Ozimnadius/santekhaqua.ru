@@ -1,1 +1,1 @@
-<a href="mailto:info@santehaqua.ru">info@santehaqua.ru</a>
+<a href="mailto:info@santekhaqua.ru">info@santekhaqua.ru</a>

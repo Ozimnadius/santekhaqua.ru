@@ -12,6 +12,7 @@
 
 | Шаг | Дата | Файлы | Коммит | Проверка |
 |---|---|---|---|---|
+| 1.2 | 2026-10-21 | залито 8: bitrix/templates/aspro_max/components/bitrix/news.list/front_review/template.php (откат к исходному), include/contacts-site-address.php, include/contacts-site-email.php, include/contacts-site-map.php, include/contacts-site-phone-one.php, include/contacts-site-phone.php, include/footer/site-email.php, include/top_page/site-address.php (ssh-deploy.js, md5 сверен) | | curl главной и /contacts/, микроразметка Organization, браузер 1366/800/375 px |
 
 ## Удалить с сервера
 
