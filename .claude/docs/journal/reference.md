@@ -44,3 +44,5 @@
 - Службы доставки (sale): [1] «Доставка по Москве (в пределах МКАД)» 750, [5] «до 10 км от МКАД» 1100, [6] «до 30 км» 1800, [7] «до 70 км» 3500 — Configurable, ограничения BySite s1 + ByLocation 0000028023 (Россия); [2] Самовывоз 0; [3] СПСР выключена; [4] Без доставки (служебная); оплата — только «Наличные курьеру» [1], без привязки к доставке
 - Откат доставки: выключить [5] [6] [7], вернуть [1] имя «Доставка курьером» и цену 500
 - Тексты о доставке: /help/delivery/ (help/delivery/index.php), подсказка в карточке — catalog/index_help_text.php (включаемая область раздела с суффиксом help_text, кешируется вместе с catalog.element); калькулятор в карточке — aspro:catalog.delivery.max (include/comp_catalog_delivery.php)
+- Переменные темы Аспро (светлая / тёмная): --white_text_black #333 / white, --basic_text_black #555 / #ccc, --stroke_black #ececec / #3a3a3a, --black_bg_black #fff / #1b1b1b, --theme-base-color #365edc; тёмная включается по prefers-color-scheme
+- Мобильная шапка Аспро (header_mobile_1.php): бургер, логотип, значки телефона (ShowHeaderMobilePhones), поиска, кабинета, корзины с сравнением/избранным (ShowBasketWithCompareLink)
