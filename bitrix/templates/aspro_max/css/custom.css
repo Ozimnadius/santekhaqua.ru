@@ -1,0 +1,28 @@
+/*NOTE: This file is intended for programmers. Aspro technical support is not advised to work with him.*/
+
+/* Examples (uncomment to use):*/
+
+/* Expand site width */
+/* body .wrapper { max-width: 1400px !important;  } */
+
+/* Set site background image */
+/* body {  background: url(image_source) top no-repeat; }
+
+/* Hide compare button */
+/* a.compare_item { display: none !important;  }*/
+
+@media (min-width: 992px) {
+    .item-views.float_banners2 .item .lazyloaded {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+.item-views.float_banners2 .item {
+    justify-content: space-between;
+}
+.item-views.float_banners2 .item .previewtext {
+    max-height: 100px;
+}
+.set-position.center {
+    background-size: cover;
+}
