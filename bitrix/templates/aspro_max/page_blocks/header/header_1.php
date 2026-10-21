@@ -51,7 +51,8 @@ $bHeaderCallback = in_array('HEADER', $callbackExploded);
 				<div class="header__top-item flex1 hdr-contacts">
 					<?if($arHeaderPhones):?>
 						<div class="hdr-phones">
-							<?=CMax::showSpriteIconSvg(SITE_TEMPLATE_PATH."/images/svg/header_icons_srite.svg#phone_black", "svg-inline-phone hdr-phones__icon", ['WIDTH' => 5,'HEIGHT' => 13]);?>
+							<?// значок из спрайта не перекрасить снаружи — тот же значок Аспро инлайном, цвет задаёт custom.css?>
+							<?=CMax::showIconSvg("phone hdr-phones__icon", SITE_TEMPLATE_PATH."/images/svg/Phone_black.svg");?>
 							<?foreach($arHeaderPhones as $arPhone):?>
 								<a class="hdr-phones__item" rel="nofollow" href="<?=htmlspecialcharsbx($arPhone['HREF'])?>"><?=$arPhone['PHONE']?></a>
 							<?endforeach;?>

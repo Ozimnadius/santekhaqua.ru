@@ -70,7 +70,9 @@
     flex: none;
     margin-right: -16px;
 }
-.hdr-phones__icon path {
+/* значки телефона, адреса и почты — цвета темы (Аспро красит .cls-1/.cls-phone в серый) */
+.hdr .hdr-phones__icon path,
+.hdr .hdr-sub .svg path {
     fill: var(--theme-base-color);
 }
 .hdr-phones__item {
@@ -114,7 +116,8 @@
     align-items: center;
     gap: 24px;
 }
-.hdr-callback {
+/* кнопка: селектор сильнее аспровского .logo_and_menu-row .callback-block (0.6em, капс, свой цвет) */
+.logo_and_menu-row .hdr .hdr-callback {
     display: inline-flex;
     align-items: center;
     padding: 8px 18px;
@@ -123,22 +126,34 @@
     font-size: 13px;
     font-weight: 600;
     line-height: 18px;
+    text-transform: none;
     white-space: nowrap;
     cursor: pointer;
     color: var(--white_text_black);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-.hdr-callback:hover {
+.logo_and_menu-row .hdr .hdr-callback:hover {
     background-color: var(--theme-base-color);
     color: #fff;
 }
 .hdr .inline-search-show .title {
     display: none;
 }
-/* главная с большим баннером: шапка поверх светлого фона — тёмный текст, как у телефона Аспро */
-.long_banner .header_wrap:not(.light-menu-color) .hdr-phones__item,
-.long_banner .header_wrap:not(.light-menu-color) .hdr-callback {
+/* главная с большим баннером: шапка поверх светлого фона — тёмный текст, как у телефона Аспро.
+   Аспро красит здесь значки и «Заказать звонок» правилами .long_banner … .logo-row .svg:not(…)×5 svg * — специфичностью
+   их не перебить, поэтому !important */
+.long_banner .header_wrap:not(.light-menu-color) .hdr-phones__item {
     color: #333;
+}
+.long_banner .header_wrap:not(.light-menu-color) .hdr .hdr-callback:not(:hover) {
+    color: #333 !important;
+}
+.long_banner .header_wrap:not(.light-menu-color) .hdr .hdr-callback:hover {
+    color: #fff !important;
+}
+.long_banner .header_wrap:not(.light-menu-color) .hdr .hdr-phones__icon path,
+.long_banner .header_wrap:not(.light-menu-color) .hdr .hdr-sub .svg path {
+    fill: var(--theme-base-color) !important;
 }
 .long_banner .header_wrap:not(.light-menu-color) .hdr-sub {
     color: #555;
@@ -234,7 +249,7 @@
     .header-messengers__item--max {
         background-size: 28px 28px;
     }
-    .hdr-callback {
+    .logo_and_menu-row .hdr .hdr-callback {
         padding: 0;
         border: 0;
         border-radius: 0;
@@ -243,8 +258,12 @@
         text-decoration: underline;
         color: var(--theme-base-color);
     }
-    .hdr-callback:hover {
+    .logo_and_menu-row .hdr .hdr-callback:hover {
         background: none;
         color: var(--theme-base-color);
+    }
+    .long_banner .header_wrap:not(.light-menu-color) .hdr .hdr-callback:not(:hover),
+    .long_banner .header_wrap:not(.light-menu-color) .hdr .hdr-callback:hover {
+        color: var(--theme-base-color) !important;
     }
 }

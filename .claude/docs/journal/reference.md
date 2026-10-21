@@ -49,3 +49,4 @@
 - Шапка header_1 (вариант 3): .hdr-brand (логотип + слоган), .hdr-contacts (.hdr-phones, .hdr-sub), .hdr-actions (.header-messengers, .hdr-callback), затем .right-icons Аспро; стили — css/custom.css, точки 1299 и 1199
 - Короткий адрес шапки — include/top_page/header-address.php (правится в админке); полный — include/top_page/site-address.php (подвал) и include/contacts-site-address.php (контакты)
 - В Figma вариант 3 на 1024 (узел 6:755) — телефоны в ряд, как на сайте
+- Цвет «Заказать звонок» в шапке меняется с переходом 0.3 с — при проверке скриптом цвет читать с паузой, иначе попадает промежуточное значение
