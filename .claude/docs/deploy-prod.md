@@ -22,6 +22,7 @@
 | 1.13 | 2026-10-21 | залито 2: bitrix/templates/aspro_max/css/custom.css, bitrix/templates/aspro_max/page_blocks/header/header_1.php (ssh-deploy.js, md5 сверен; повторная заливка custom.css после проверки) | | главная 1440/1024 (значки, кнопка, наведение), /contacts/ тёмная тема |
 | 1.14 | 2026-10-21 | залито 2: bitrix/templates/aspro_max/css/custom.css, bitrix/templates/aspro_max/page_blocks/header_mobile_1.php (ssh-deploy.js, md5 сверен; повторная заливка custom.css после проверки) | | главная и /contacts/ 375 светлая и тёмная, 768; бургер-меню (избранное, сравнение) |
 | 1.15 | 2026-10-21 | залито 1: bitrix/templates/aspro_max/css/custom.css (ssh-deploy.js, md5 сверен) | | главная 1160/992/1440 — края строки шапки совпадают с полосой меню |
+| 2.0а | 2026-11-02 | точка отсчёта заливки — совпадают с сервером по md5 8: bitrix/templates/aspro_max_mail/.styles.php, bitrix/templates/aspro_max_mail/description.php, bitrix/templates/aspro_max_mail/footer.php, bitrix/templates/aspro_max_mail/header.php, bitrix/templates/aspro_max_mail/lang/en/description.php, bitrix/templates/aspro_max_mail/lang/ru/description.php, bitrix/templates/aspro_max_mail/styles.css, bitrix/templates/aspro_max_mail/template_styles.css (ssh-deploy.js --md5, не заливались) | | md5 с сервером совпали (ssh-deploy.js --md5) |
 
 ## Удалить с сервера
 

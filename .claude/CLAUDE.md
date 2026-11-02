@@ -4,14 +4,14 @@
 
 ## Проект
 
-- Интернет-магазин сантехники santekhaqua.ru: 1С-Битрикс (ядро 25.100.500) + Аспро «Максимум» 2.7.1, шаблон `bitrix/templates/aspro_max` (копии в `local/templates` нет, папки `local/` на сайте нет).
-- Задача: Б24 #79227 — Доработка santekhaqua.ru.
+- Интернет-магазин сантехники santekhaqua.ru: 1С-Битрикс (ядро 25.100.500) + Аспро «Максимум» 2.7.1, шаблон `bitrix/templates/aspro_max` (копии в `local/templates` нет; в `local/` — только `php_interface`).
+- Задача: без задачи (этап 1 по Б24 #79227 — Доработка santekhaqua.ru — закрыт 2026-10-21).
 - Журнал: `.claude/docs/progress.md`. Выкладка: `.claude/docs/deploy-prod.md`.
 
 ## Окружение
 
-- **Локально:** `C:\OSPanel\home\santekhaqua.server`. В проекте — публичная часть сайта и шаблон `bitrix/templates/aspro_max`; ядра `bitrix/` (остальное) и `upload/` нет. Windows, PowerShell.
-- **Сервер:** прод — https://santekhaqua.ru, PHP 8.2.28; шаги идут на прод и проверяются там.
+- **Локально:** `C:\OSPanel\home\santekhaqua.server`. В проекте — публичная часть сайта и шаблоны `bitrix/templates/aspro_max`, `bitrix/templates/aspro_max_mail`; ядра `bitrix/` (остальное) и `upload/` нет. Windows, PowerShell.
+- **Сервер:** прод — https://santekhaqua.ru, PHP 8.2.35; шаги идут на прод и проверяются там.
 - **Работа на сервере:** SSH — `ssh santekhaqua`, папка сайта `/var/www/user1867/data/www/santekhaqua.ru`, PHP CLI `/opt/php82/bin/php` (команда `php` на сервере — 5.4, не она); `/kit:server` работает по SSH, файл `kit-exec.php` — запасной путь.
 - **Выкладка:** Claude по SSH: правки шага заливает `/kit:step-done` после просмотра (скрипт `ssh-deploy.js` — всё, что изменилось с последней заливки, и удаления), затем проверка на сервере и коммит; автозаливка PhpStorm выключена — иначе файлы уедут дважды.
   - Не выкладываются: `.idea`, `.git`, `.claude`, `.gitignore`.
@@ -38,7 +38,7 @@
 ## Код
 
 - Шаблон Аспро правим прямо в `bitrix/templates/aspro_max` (копии в `local/templates` нет). Телефоны, адрес, почта и соцсети по возможности — через настройки Аспро в админке и включаемые области (`include/`), а не правкой кода. Модули Аспро (`bitrix/modules/aspro.*`) и ядро не трогаем. Устаревшие `.min.css`/`.min.js` Аспро не трогать и не создавать.
-- Рабочие папки в `bitrix/` — `bitrix/templates/aspro_max`: правят прямо там, поэтому они в git (исключения в `.gitignore` и «Не коммитить») и уезжают на сервер, как остальные файлы. Обновление ядра или решения (Аспро) меняет их на сервере — после него скачать эти папки с сервера заново и закоммитить (при «Claude по SSH» — шагом без заливки, точка отсчёта: `/kit:step-done`, `ssh-deploy.js --md5`), иначе правка такого файла зальёт поверх новой версии старую.
+- Рабочие папки в `bitrix/` — `bitrix/templates/aspro_max`, `bitrix/templates/aspro_max_mail` (шаблон писем): правят прямо там, поэтому они в git (исключения в `.gitignore` и «Не коммитить») и уезжают на сервер, как остальные файлы. Обновление ядра или решения (Аспро) меняет их на сервере — после него скачать эти папки с сервера заново и закоммитить (при «Claude по SSH» — шагом без заливки, точка отсчёта: `/kit:step-done`, `ssh-deploy.js --md5`), иначе правка такого файла зальёт поверх новой версии старую.
 - Код на Битриксе — по скиллам в `.claude/skills/`: начинай с `bitrix-framework` (каноны D7, `/local/`, безопасность, версии ядра), практики — `bitrix-best-practice-core` и `bitrix-best-practice-sql`; для задачи открой подходящий скилл и только нужные `rules/*.md`. Скиллы не в git: нет `.claude/skills/bitrix-framework/` (например, после `git clone` на другом компьютере) — поставь их через `/kit:project-init`.
 
 ## Параметры для агентов
@@ -59,7 +59,8 @@
 - ID шага: N.M (например 0.3, 2.1)
 - Не выкладывать: .idea, .git, .claude, .gitignore
 - Документы на сервере: да
-- Не коммитить: bitrix/ (кроме bitrix/templates/aspro_max), upload/ (кроме upload/docs/), *.back*
+- Не коммитить: bitrix/ (кроме bitrix/templates/aspro_max, bitrix/templates/aspro_max_mail), upload/ (кроме upload/docs/), *.back*
 - Секреты: —
 - Удалённый репозиторий: origin
-- Версия kit: 3.2.1
+- Система Мэтта: нет
+- Версия kit: 3.4.2

@@ -25,6 +25,7 @@
 !/bitrix/templates/
 /bitrix/templates/*
 !/bitrix/templates/aspro_max/
+!/bitrix/templates/aspro_max_mail/
 /upload/*
 !/upload/docs/
 

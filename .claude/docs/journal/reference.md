@@ -55,3 +55,5 @@
 - Все 11 веб-форм шлют письмо на #DEFAULT_EMAIL_FROM# (main email_from); копия нового заказа — BCC на sale order_email
 - Журнал Exim (/var/log/exim*) пользователю сайта не читается; входящие info@ — ~/email/santekhaqua.ru/info/.maildir/new
 - Прод правят без kit: синхронизация 02.11.2026 забрала правки шаблонов каталога, include/invis-counter.php, urlrewrite.php, local/php_interface/catalog-schema.php, yastore.checkout/
+- Отчёт заказчику: 2026-11-02 (период с 2026-10-21)
+- check-closed 2026-11-02: файлы .claude на проде — 403, открытых нет

@@ -4,7 +4,7 @@
 
 ## Сейчас
 
-- **Этап:** 2 — Поддержка santekhaqua.ru (начат 2026-11-02); последний шаг 2.1 — Письма с веб-форм не приходили: адрес по умолчанию (main email_from) и адрес магазина (sale order_email) были info@santehaqua.ru — домен с опечаткой, его нет; заменены на info@santekhaqua.ru, адрес сайта main server_name — на santekhaqua.ru (скрипт .claude/scripts/01-fix-email-domain.php)
+- **Этап:** 2 — Поддержка santekhaqua.ru (начат 2026-11-02); последний шаг 2.0а — Настройка проекта обновлена под kit 3.4.2 (/kit:project-init): «Версия kit: 3.4.2», «Система Мэтта: нет», задача — без задачи; шаблон писем bitrix/templates/aspro_max_mail стал рабочей папкой (.gitignore, «Не коммитить», правило в «Код») и скачан с прода; поправлены устаревшие строки правил (local/, PHP 8.2.35); скиллы Битрикса обновлены: bxmaximum/bitrix-framework-skills@70f487d — 44, bitrix-tools/best-practice@14850b5 — 2
 - **Следующий шаг:** 2.2 — по новым запросам заказчика
 - **Блокеры и открытые вопросы:** нет (вопросы заказчику о тестовом письме и адресе самовывоза закрыты пользователем 2026-10-21)
 
@@ -34,5 +34,6 @@
 
 | Шаг | Статус | Что сделано | Как проверено |
 |---|---|---|---|
+| 2.0а | ✅ | Настройка проекта обновлена под kit 3.4.2 (/kit:project-init): «Версия kit: 3.4.2», «Система Мэтта: нет», задача — без задачи; шаблон писем bitrix/templates/aspro_max_mail стал рабочей папкой (.gitignore, «Не коммитить», правило в «Код») и скачан с прода; поправлены устаревшие строки правил (local/, PHP 8.2.35); скиллы Битрикса обновлены: bxmaximum/bitrix-framework-skills@70f487d — 44, bitrix-tools/best-practice@14850b5 — 2 | phpstorm-exclude --check — код 0 (автозаливка выключена); git check-ignore: aspro_max_mail/header.php — 1, bitrix/.settings.php — 0; secret-scan по шаблону писем — чисто; ssh-deploy --md5 — совпадают 8 из 8, не заливались (точка отсчёта); check-closed https://santekhaqua.ru — 15 файлов .claude, все 403, открытых нет; site-probe и ssh-probe — PHP 8.2.35, папка сайта совпала |
 | 2.1 | ✅ | Письма с веб-форм не приходили: адрес по умолчанию (main email_from) и адрес магазина (sale order_email) были info@santehaqua.ru — домен с опечаткой, его нет; заменены на info@santekhaqua.ru, адрес сайта main server_name — на santekhaqua.ru (скрипт .claude/scripts/01-fix-email-domain.php) | Причина: b_event — FORM_FILLING_CALLBACK/ASK выполнены (Y), шаблоны форм шлют на #DEFAULT_EMAIL_FROM#; host santehaqua.ru — NXDOMAIN; в ящике info@ возврат «Mail delivery failed» на заявку 16:11. Исправление: пробный запуск, затем запись — три значения заменены; тестовое письмо FORM_FILLING_CALLBACK (SendImmediate = Y) легло в ~/email/santekhaqua.ru/info/.maildir/new в 16:19 (From и To — info@santekhaqua.ru). Пересылка копии на inbox.ru не проверялась |
 | 2.2 | ⏳ | по новым запросам заказчика | |
