@@ -3,6 +3,11 @@
 }?>
 
 <?$this->setFrameMode(true); ?>
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/catalog-schema.php';
+echo santekhaquaSchemaCatalog($arResult, $arParams);
+?>
+
 <?use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\Web\Json;
 

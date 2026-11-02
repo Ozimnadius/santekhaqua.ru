@@ -32,6 +32,14 @@ $arUrlRewrite=array (
     'PATH' => '/bitrix/services/ymarket/index.php',
     'SORT' => 100,
   ),
+  27 => 
+  array (
+    'CONDITION' => '#^/yastore\\.checkout/#',
+    'RULE' => '',
+    'ID' => 'yastore:checkout',
+    'PATH' => '/yastore.checkout/index.php',
+    'SORT' => 100,
+  ),
   20 => 
   array (
     'CONDITION' => '#^/company/partners/#',

@@ -118,7 +118,8 @@
 		"ADD_PROPERTIES_TO_BASKET" => "Y",
 		"PARTIAL_PRODUCT_PROPERTIES" => "N",
 		"ADD_PICT_PROP_OFFER" => "MORE_PHOTO",
-		"AJAX_LOAD" => "Y",
+		"AJAX_LOAD" => "N",
+        "SANTEKHAQUA_MAIN_SCHEMA" => "Y",
 		"FIELD_CODE" => array(
 			0 => "",
 			1 => "",

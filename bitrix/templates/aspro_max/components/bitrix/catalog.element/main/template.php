@@ -3,6 +3,12 @@
 <?
 use \Bitrix\Main\Localization\Loc;
 use \Aspro\Max\Product\Blocks;
+
+// Полный адрес сайта для ссылок в микроразметке
+$mdRequest = \Bitrix\Main\Context::getCurrent()->getRequest();
+$mdHost = ($mdRequest->isHttps() ? 'https://' : 'http://') . $mdRequest->getHttpHost();
+// Блок Offer выводится один раз (цена на странице выводится дважды: в боковой колонке и в адаптивном блоке)
+$productOfferMicrodata = '';
 ?>
 
 <div class="basket_props_block" id="bx_basket_div_<?=$arResult["ID"];?>" style="display: none;">
@@ -590,10 +596,16 @@ $bBigGallery = $arParams["PICTURE_RATIO"] === 'square_big';
 
     <?//meta?>
     <meta itemprop="name" content="<?=$name = strip_tags(!empty($arResult['IPROPERTY_VALUES']['ELEMENT_PAGE_TITLE']) ? $arResult['IPROPERTY_VALUES']['ELEMENT_PAGE_TITLE'] : $arResult['NAME'])?>" />
-    <link itemprop="url" href="<?=$arResult['DETAIL_PAGE_URL']?>" />
+    <link itemprop="url" href="<?=$mdHost.$arResult['DETAIL_PAGE_URL']?>" />
     <meta itemprop="category" content="<?=$arResult['CATEGORY_PATH']?>" />
     <meta itemprop="description" content="<?=(strlen(strip_tags($arResult['PREVIEW_TEXT'])) ? strip_tags($arResult['PREVIEW_TEXT']) : (strlen(strip_tags($arResult['DETAIL_TEXT'])) ? strip_tags($arResult['DETAIL_TEXT']) : $name))?>" />
     <meta itemprop="sku" content="<?=$arResult['ID'];?>" />
+    <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/catalog-schema.php';
+    $schemaBrand = santekhaquaSchemaBrand($arResult);
+    if ($schemaBrand !== ''): ?>
+        <meta itemprop="brand" content="<?=santekhaquaSchemaEscape($schemaBrand)?>">
+    <?php endif; ?>
 
 
     <?//rating block?>
@@ -890,6 +902,7 @@ $bBigGallery = $arParams["PICTURE_RATIO"] === 'square_big';
                                                 <?\Aspro\Functions\CAsproMaxItem::showItemPrices($arParams, $arResult["PRICES"], $strMeasure, $min_price_id, ($arParams["SHOW_DISCOUNT_PERCENT_NUMBER"] == "Y" ? "N" : "Y"));?>
                                             <?endif;?>
                                         <?endif;?>
+                                        <?ob_start();?>
                                         <div class="" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                             <meta itemprop="price" content="<?=($arResult['MIN_PRICE']['DISCOUNT_VALUE'] ? $arResult['MIN_PRICE']['DISCOUNT_VALUE'] : $arResult['MIN_PRICE']['VALUE'])?>" />
                                             <meta itemprop="priceCurrency" content="<?=$arResult['MIN_PRICE']['CURRENCY']?>" />
@@ -898,8 +911,9 @@ $bBigGallery = $arParams["PICTURE_RATIO"] === 'square_big';
                                             if($arDiscount["ACTIVE_TO"]){?>
                                                 <meta itemprop="priceValidUntil" content="<?=date("Y-m-d", MakeTimeStamp($arDiscount["ACTIVE_TO"]))?>" />
                                             <?}?>
-                                            <link itemprop="url" href="<?=$arResult["DETAIL_PAGE_URL"]?>" />
+                                            <link itemprop="url" href="<?=$mdHost.$arResult["DETAIL_PAGE_URL"]?>" />
                                         </div>
+                                        <?$productOfferMicrodata = ob_get_clean();?>
                                     </div>
                                     <?\Aspro\Functions\CAsproMax::showBonusBlockDetail($arCurrentSKU ?: $arResult);?>
                                 <?endif;?>
@@ -1121,6 +1135,7 @@ $bBigGallery = $arParams["PICTURE_RATIO"] === 'square_big';
                             <?=$productTopBlockHtml;?>
                             <?=$productDiscount;?>
                             <?=$productPrice;?>
+                            <?=$productOfferMicrodata;?>
                             <?$productForms = str_replace(' id=', ' data-id=', $productForms);?>
                             <?=$productForms;?>
                             <div class="js-prices-in-item"></div>
@@ -1181,7 +1196,7 @@ $bBigGallery = $arParams["PICTURE_RATIO"] === 'square_big';
                         <div class="brand-detail">
                             <div class="brand-detail-info bordered rounded3">
                                 <?if($arResult['BRAND_ITEM']["IMAGE"]):?>
-                                    <div class="brand-detail-info__image"><a href="<?=$arResult['BRAND_ITEM']["DETAIL_PAGE_URL"];?>"><img src="<?=$arResult['BRAND_ITEM']["IMAGE"]["src"];?>" alt="<?=$arResult['BRAND_ITEM']["NAME"];?>" title="<?=$arResult['BRAND_ITEM']["NAME"];?>" itemprop="image"></a></div>
+                                    <div class="brand-detail-info__image"><a href="<?=$arResult['BRAND_ITEM']["DETAIL_PAGE_URL"];?>"><img src="<?=$arResult['BRAND_ITEM']["IMAGE"]["src"];?>" alt="<?=$arResult['BRAND_ITEM']["NAME"];?>" title="<?=$arResult['BRAND_ITEM']["NAME"];?>"></a></div>
                                 <?endif;?>
                                 <div class="brand-detail-info__preview">
                                     <?if($arResult['BRAND_ITEM']["PREVIEW_TEXT"]):?>
@@ -1229,7 +1244,7 @@ $bBigGallery = $arParams["PICTURE_RATIO"] === 'square_big';
                 <?endforeach;?>
                 <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                     <meta itemprop="sku" content="<?=implode('/', $currentOffersList)?>" />
-                    <a href="<?=$arOffer['DETAIL_PAGE_URL']?>" itemprop="url"></a>
+                    <a href="<?=$mdHost.$arOffer['DETAIL_PAGE_URL']?>" itemprop="url"></a>
                     <meta itemprop="price" content="<?=($arOffer['MIN_PRICE']['DISCOUNT_VALUE']) ? $arOffer['MIN_PRICE']['DISCOUNT_VALUE'] : $arOffer['MIN_PRICE']['VALUE']?>" />
                     <meta itemprop="priceCurrency" content="<?=$arOffer['MIN_PRICE']['CURRENCY']?>" />
                     <link itemprop="availability" href="http://schema.org/<?=($arOffer['CAN_BUY'] ? 'InStock' : 'OutOfStock')?>" />
@@ -1263,7 +1278,7 @@ $bBigGallery = $arParams["PICTURE_RATIO"] === 'square_big';
     <?$this->SetViewTarget('PRODUCT_DETAIL_TEXT_INFO');?>
     <?$detailText = $bOfferDetailText ? $arCurrentSKU["DETAIL_TEXT"] : (($arResult['DETAIL_TEXT']) ? $arResult['DETAIL_TEXT'] : $arResult['PREVIEW_TEXT']); ?>
 
-        <div class="content detail-text-wrap" itemprop="description">
+        <div class="content detail-text-wrap">
             <?Aspro\Functions\CAsproMax::showCollapsedBlockFromText($detailText)?>
 
         </div>
