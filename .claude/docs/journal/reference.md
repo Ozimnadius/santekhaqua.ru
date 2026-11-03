@@ -57,3 +57,6 @@
 - Прод правят без kit: синхронизация 02.11.2026 забрала правки шаблонов каталога, include/invis-counter.php, urlrewrite.php, local/php_interface/catalog-schema.php, yastore.checkout/
 - Отчёт заказчику: 2026-11-02 (период с 2026-10-21)
 - check-closed 2026-11-02: файлы .claude на проде — 403, открытых нет
+- Крон сайта (с 2026-11-03): `* * * * * /opt/php82/bin/php -f /var/www/user1867/data/www/santekhaqua.ru/bitrix/modules/main/tools/cron_events.php >/dev/null 2>&1` в crontab пользователя user1867; main agents_use_crontab = Y. Откат — удалить строку из crontab и Option::delete('main', ['name' => 'agents_use_crontab']). Если crontab сбросят — встанут все непериодические агенты (≈56: фиды, sale, search, rest и др.)
+- В ядре 25.100.500 файл main/tools/cron_events.php сам агентов не вызывает: ставит BX_CRONTAB, а агенты и почту запускают фоновые задачи из main/include.php при check_agents = Y / check_events ≠ N; при BX_CRONTAB выполняются агенты IS_PERIOD = N, на хитах — IS_PERIOD = Y
+- Модуль yandex.market: прайс-листы — /bitrix/admin/yamarket_setup_list.php; форма — мастер из 3 шагов, сохранение — кнопкой «Сохранить и выгрузить» (сохраняет и открывает страницу выгрузки, сама выгрузка не стартует). В форме предупреждение «Отсутствует библиотека jQuery» (/bitrix/js/main/jquery/jquery-1.12.4.min.js) — касается ручной выгрузки из админки
